@@ -44,6 +44,7 @@ jobs:
           context: .
           file: dockerfile
           push: true
-          tags: ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:latest
+          tags: 396608798478.dkr.ecr.us-east-1.amazonaws.com/my_ecr_repository/my_ecr_repository:latest
+          
 
    
