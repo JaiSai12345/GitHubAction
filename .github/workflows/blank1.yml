@@ -35,4 +35,7 @@ jobs:
         context: .
         file: Dockerfile
         push: true
-        tags: sainathmandala90/pharmetrade:latest
+        tags: jayasai9000/github_action
+
+
+        
