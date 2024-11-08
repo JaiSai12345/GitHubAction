@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: dockerfile
+          file: Dockerfile
           push: true
           tags: 396608798478.dkr.ecr.us-east-1.amazonaws.com/my_ecr_repository/my_ecr_repository:latest
           
