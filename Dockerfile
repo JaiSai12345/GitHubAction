@@ -1,34 +1,34 @@
-# Stage 1: Build the application
-FROM node:20 AS builder
+# Use an official Python runtime as a parent image
 
-# Set the working directory inside the container
+FROM python:3.9
+
+
+# Set the working directory to /app
+
 WORKDIR /app
 
-# Copy package.json and package-lock.json to leverage Docker cache
-COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Copy the current directory contents into the container at /app
 
-# Copy the rest of the application source code
-COPY . .
+ADD . /app
 
-# Build the application (if applicable, e.g., for React/Next.js apps)
-RUN npm run build
 
-# Stage 2: Create the production image
-FROM node:20-slim
+# Install any needed packages specified in requirements.txt
 
-# Set the working directory inside the container
-WORKDIR /app
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy only the necessary files from the build stage
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
 
-# Expose the application port
-EXPOSE 3000
+# Make port 5000 available to the world outside this container
 
-# Start the application
-CMD ["node", "dist/index.js"]
+EXPOSE 5000
+
+
+# Define environment variable
+
+ENV NAME World
+
+
+# Run app.py when the container launches
+
+CMD ["python", "app.py"]
+
