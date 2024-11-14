@@ -25,10 +25,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      # Step 4: Build the Docker image
+      # Step 4: Build the Docker image using Docker Buildx
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-image:latest .
+        run: |
+          docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/my-image:latest . --push
 
       # Step 5: Push the Docker image to Docker Hub
-      - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/my-image:latest
+      # Note: In the above step, we already pushed the image with --push
